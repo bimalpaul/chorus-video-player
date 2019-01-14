@@ -1,0 +1,11 @@
+<div *ngFor="let detail of transcript" class="row transcript">
+  <div class="col-sm-1">
+    <div *ngIf="detail.speaker?.toLowerCase() === 'cust'" class="customer"></div>
+    <div *ngIf="detail.speaker?.toLowerCase() === 'rep'" class="representative"></div>
+  </div>
+  <div class="col-sm-11">
+    <div class="user col-sm-12" *ngIf="detail.speaker">{{detail.speaker}}</div>
+    <span class="text">{{detail.snippet}}</span>
+  </div>
+
+</div>

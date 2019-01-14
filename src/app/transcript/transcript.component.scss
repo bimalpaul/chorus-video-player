@@ -1,0 +1,35 @@
+.text {
+  font-family: SFUIText-Regular;
+  font-size: 15px;
+  color: #333333;
+  line-height: 20px;
+  background: #F7F7F7;
+  border-radius: 100px;
+  padding: 1px 10px;
+  margin: 1px 5px;
+}
+
+.user {
+  font-family: SFUIText-Regular;
+  font-size: 12px;
+  color: #333333;
+  line-height: 16px;
+}
+
+.transcript {
+  margin-bottom: 1px;
+}
+
+.representative {
+  background: #00A7D1;
+  border: 1px solid #00A7D1;
+  border-radius: 100px;
+  height: 28px;
+}
+
+.customer {
+  background: #EE6EFF;
+  border: 1px solid #EE6EFF;
+  border-radius: 100px;
+  height: 28px;
+}
