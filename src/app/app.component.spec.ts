@@ -26,7 +26,7 @@ describe('AppComponent', () => {
 
   it('should render title in a h3 tag', () => {
     fixture.detectChanges();
-    expect(compiled.querySelector('h3').textContent).toContain(app.title);
+    expect(compiled.querySelector('#pageTitle').textContent).toContain(app.title);
   });
 
   it('should render the video component', () => {

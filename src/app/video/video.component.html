@@ -9,8 +9,8 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <video controls (timeupdate)="setCurrentTime($event)" id="videoContainer" >
-      <source [src]=videoUrl type="video/mp4" (error)="showVideoError = true">
+    <video controls (timeupdate)="setCurrentTime($event)" id="videoContainer">
+      <source [src]=videoUrl type="video/mp4" (error)="showVideoError = true" id="videoSource">
       Your browser does not support the video tag.
     </video>
   </div>

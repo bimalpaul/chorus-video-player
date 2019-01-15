@@ -16,7 +16,7 @@ export class VideoComponent implements OnInit {
   displayedTranscript: ITranscript[] = [];
   showVideoError = false;
   currentTime: number;
-  errorText = 'Invalid ID/No ID. Please append a valid ID to the URL';
+  errorText = 'Invalid ID/No ID! Please append a valid ID to the URL.';
 
   @Output() transcriptChanged: EventEmitter<ITranscript[]> = new EventEmitter();
 
@@ -42,7 +42,7 @@ export class VideoComponent implements OnInit {
     });
   }
 
-  private setCurrentTime(data) {
+  public setCurrentTime(data) {
     this.currentTime = data.target.currentTime;
     this.displayTranscript();
     this.backtrackTranscript();
