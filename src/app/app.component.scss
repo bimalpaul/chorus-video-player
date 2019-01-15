@@ -1,5 +1,6 @@
 .videoSection {
-  height: 521px;
+  min-height: 521px;
+  max-height: 800px;
   width: 824px;
   background: #FFFFFF;
   border: 1px solid #D7DADE;
@@ -8,5 +9,14 @@
 }
 
 .container {
-  height: 99vh;
+  height: 95vh;
+}
+
+#pageTitle {
+  font-family: SFUIText-Regular;
+  font-size: 26px;
+  color: #333333;
+  line-height: 28px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }

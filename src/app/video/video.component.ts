@@ -14,28 +14,48 @@ export class VideoComponent implements OnInit {
   videoUrl = '';
   transcript: ITranscript[] = [];
   displayedTranscript: ITranscript[] = [];
-
+  showVideoError = false;
   currentTime: number;
+  errorText = 'Invalid ID/No ID. Please append a valid ID to the URL';
 
   @Output() transcriptChanged: EventEmitter<ITranscript[]> = new EventEmitter();
 
   constructor(private activatedRoute: ActivatedRoute, private videoService: ChorusVideoService) {
   }
 
-  setCurrentTime(data) {
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.showVideoError = false;
+      this.id = params['id'];
+      if (this.id !== '') {
+        this.videoService.getVideo(this.id)
+          .subscribe(video => {
+            this.videoUrl = video;
+          });
+        this.videoService.getTranscript(this.id)
+          .subscribe(transcript => {
+            this.transcript = transcript;
+          });
+      } else {
+        this.showVideoError = true;
+      }
+    });
+  }
+
+  private setCurrentTime(data) {
     this.currentTime = data.target.currentTime;
     this.displayTranscript();
     this.backtrackTranscript();
     this.transcriptChanged.emit(this.displayedTranscript);
   }
 
-  getPreviousEntryWithSpeaker = () => {
+  private getPreviousEntryWithSpeaker = () => {
     const entriesWithSpeakers = this.displayedTranscript.filter(tr => tr.speaker != null);
     const len = entriesWithSpeakers.length;
     return entriesWithSpeakers[len - 1];
   }
 
-  displayTranscript = () => {
+  private displayTranscript = () => {
     const transcriptEntryLength = this.displayedTranscript.length;
     this.transcript.forEach(tran => {
       if (tran.time < this.currentTime) {
@@ -53,23 +73,6 @@ export class VideoComponent implements OnInit {
     this.displayedTranscript.forEach((tran, index) => {
       if (tran.time > this.currentTime) {
         this.displayedTranscript.splice(index, 1);
-      }
-    });
-  }
-
-
-  ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.id = params['id'];
-      if (this.id !== '') {
-        this.videoService.getVideo(this.id)
-          .subscribe(video => {
-            this.videoUrl = video;
-          });
-        this.videoService.getTranscript(this.id)
-          .subscribe(transcript => {
-            this.transcript = transcript;
-          });
       }
     });
   }
